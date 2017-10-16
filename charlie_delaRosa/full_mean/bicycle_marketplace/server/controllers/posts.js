@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 // import Post model
 const Post = mongoose.model('Post');
+const User = mongoose.model('User');
 
 class PostsController {
   index(req, res){
@@ -29,7 +30,14 @@ class PostsController {
       if(err){
         return res.json(err);
       }
-      return res.json(post);
+      User.findByIdAndUpdate(post.user, { $push: { posts: post._id } }, { new: true }, (err, user) => {
+        if(err) {
+          return res.json(err);
+        }
+        return res.json(post);
+      })
+      // look up the User who made the post
+      // push post._id to the User's posts array
     })
   }
 

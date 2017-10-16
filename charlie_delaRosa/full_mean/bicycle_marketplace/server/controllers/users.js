@@ -31,6 +31,16 @@ class UsersController {
       })
     }
 
+    getPosts(req, res) {
+      User.findById(req.session.user_id).populate({ path: 'posts', model: 'Post' }).exec((err, user) => {
+        if(err){
+          return res.json(err);
+        }
+        console.log(user);
+        return res.json(user);
+      })
+    }
+
     show(req, res){
       User.findById(req.params.id, (err, user) => {
         if(err){
@@ -80,8 +90,8 @@ class UsersController {
     }
 
     session(req, res) {
-        if (req.session.user_id) {
-            return res.json({ status: true });
+        if (!req.session.user_id) {
+            return res.json({ status: false });
         }
         User.findById(req.session.user_id, (err, user) => {
             if (err) {

@@ -1,3 +1,72 @@
-<p>
-  login-reg works!
-</p>
+  <div>
+    <h1>Bike of the day!</h1>
+<div>
+
+  <div class="">
+    <table>
+      <tr>
+        <td><h3>Bicycle</h3></td>
+        <td><h3>$950</h3></td>
+      </tr>
+      <tr>
+        <td><textarea name="description" rows="4" cols="40"></textarea></td>
+        <td><h4>Dallas, TX</h4></td>
+      </tr>
+    </table>
+  </div>
+
+  <h2>Register</h2>
+  <form (submit)="createUser()">
+    <table>
+      <tr>
+        <td><label>First Name:</label></td>
+        <td><input
+          type="text"
+          name="firstName"
+          #firstName="ngModel"
+          [(ngModel)]="newUser.firstName"
+          required
+          minlength='3'
+          ><p *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">First name must be at least 3 characters</p></td>
+      </tr>
+      <tr>
+        <td><label>Last Name:</label></td>
+        <td><input type="text" name="lastName" [(ngModel)]="newUser.lastName"></td>
+      </tr>
+      <tr>
+        <td><label>Email:</label></td>
+        <td><input type="text" name="email" [(ngModel)]="newUser.email"></td>
+      </tr>
+      <tr>
+        <td><label>Password:</label></td>
+        <td><input type="password" name="password" [(ngModel)]="newUser.password"></td>
+      </tr>
+      <tr>
+        <td><label>Password Confirmation:</label></td>
+        <td><input type="password" name="password_confirmation" [(ngModel)]="newUser.password_confirmation"></td>
+      </tr>
+      <tr>
+        <td><input type="submit" value="Register"></td>
+      </tr>
+    </table>
+  </form>
+  <div>
+    <p *ngFor="let error of errors">{{ error }}</p>
+  </div>
+
+  <h2>Login</h2>
+  <form (submit)="loginUser()">
+    <table>
+      <tr>
+        <td><label>Email:</label></td>
+        <td><input type="text" name="email" [(ngModel)]="ninja.email"></td>
+      </tr>
+      <tr>
+        <td><label>Password:</label></td>
+        <td><input type="password" name="password" [(ngModel)]="ninja.password"></td>
+      </tr>
+      <tr>
+        <td><input type="submit" value="Login"></td>
+      </tr>
+    </table>
+  </form>

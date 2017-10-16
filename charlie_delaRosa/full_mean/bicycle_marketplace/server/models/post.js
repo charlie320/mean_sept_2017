@@ -17,7 +17,9 @@ const PostSchema = new mongoose.Schema({
 		type: String,
 		required: [true, 'Location cannot be blank']
 	},
-	photo: String,
+	photo: {
+		type: String
+	},
 	user: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User'
