@@ -21,12 +21,13 @@ export class PlayerService {
     );
   }
 
-  // destroy(newPlayer: Player, callback) {
-  //   this._http.delete(`/players/${newPlayer._id}`).subscribe(
-  //     res => callback(res.json()),
-  //     err => console.log(err)
-  //   );
-  // }
+  update(updatedPlayer: Player, callback) {
+    this._http.put(`/players/${updatedPlayer._id}`, updatedPlayer).subscribe(
+      res => callback(res.json()),
+      err => console.log(err)
+    )
+  }
+
   destroy(id: string, callback) {
     this._http.delete(`/players/${id}`).subscribe(
       res => callback(res.json()),

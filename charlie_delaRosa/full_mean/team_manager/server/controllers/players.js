@@ -34,6 +34,7 @@ class PlayersController {
   }
 
   update(req, res){
+    console.log("Inside the server update method.");
     Player.findByIdAndUpdate(req.params.id, { $set : req.body }, { runValidators: true, new: true }, (err, player) => {
       if(err){
         return res.json(err);
